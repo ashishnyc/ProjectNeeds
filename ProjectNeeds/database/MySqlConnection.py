@@ -9,7 +9,7 @@ dbConn=None
 class MySqlConnection:
     def __init__(self, ConfigFile):
         self.__config = ConfigParser.RawConfigParser()
-        self.__configfile = ConfigFile
+        self.__ConfigFile = ConfigFile
         if not os.path.isfile(self.__ConfigFile):
             print('ConfigFile[{0}] does not exist. Exiting.'.format(self.__ConfigFile))
             sys.exit(0)
@@ -25,7 +25,7 @@ class MySqlConnection:
             self.__dbconn = mdb.Connection(self.__host, self.__username, self.__password, self.__database)
             self.__cursor = self.__dbconn.cursor()
         except mdb.Error as e:
-            self.__Logger.error("Error occurred while opening sql connection")
+            print(str(e))
 
     def __close(self):
         self.__cursor.close()
@@ -38,7 +38,7 @@ class MySqlConnection:
             result = self.__cursor.fetchone()
             self.__close()
         except Exception as e:
-            self.__Logger("Error occurred while running query[{0}], {1}".format(query, str(e)))
+            print(str(e))
         return result
 
     def getmultipleresults(self, query):
@@ -48,7 +48,7 @@ class MySqlConnection:
             result = self.__cursor.fetchall()
             self.__close()
         except Exception as e:
-            self.__Logger("Error occurred while running query[{0}], {1}".format(query, str(e)))
+            print(str(e))
         return result
 
     def insertrecord(self, query):
@@ -58,7 +58,7 @@ class MySqlConnection:
             self.__dbconn.commit()
             self.__close()
         except Exception as e:
-            self.__Logger("Error occurred while running query[{0}], {1}".format(query, str(e)))
+            print(str(e))
 
     def insertmultipleresults(self, query, data):
         try:
@@ -67,4 +67,4 @@ class MySqlConnection:
             self.__dbconn.commit()
             self.__close()
         except Exception as e:
-            self.__Logger("Error occurred while running query[{0}], {1}".format(query, str(e)))
+            print(str(e))
