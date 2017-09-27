@@ -5,6 +5,6 @@ setup(
     version='0.1.0',
     author='Ashish Pandey',
     author_email='ashish.jnvm@gmail.com',
-    packages=['ProjectNeeds','ProjectNeeds.database'],
+    packages=['ProjectNeeds','ProjectNeeds.Database','ProjectNeeds.Blockchain'],
     description='Useful things necessary for projects',
 )
