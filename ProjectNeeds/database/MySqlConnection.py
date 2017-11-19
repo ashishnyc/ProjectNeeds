@@ -54,9 +54,10 @@ class MySqlConnection:
     def insertrecord(self, query):
         try:
             self.__open()
-            self.__cursor.execute(query)
+            ret_value = self.__cursor.execute(query)
             self.__dbconn.commit()
             self.__close()
+            return ret_value
         except Exception as e:
             print(str(e))
 
