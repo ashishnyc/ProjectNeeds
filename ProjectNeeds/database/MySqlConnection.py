@@ -69,3 +69,6 @@ class MySqlConnection:
             self.__close()
         except Exception as e:
             print(str(e))
+
+    def get_conn(self):
+        return self.__dbconn
