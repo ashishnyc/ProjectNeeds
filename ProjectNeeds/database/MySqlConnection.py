@@ -71,4 +71,4 @@ class MySqlConnection:
             print(str(e))
 
     def get_conn(self):
-        return self.__dbconn
+        return mdb.Connection(self.__host, self.__username, self.__password, self.__database)
