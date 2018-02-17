@@ -68,6 +68,15 @@ class MySqlConnection:
             query += ' AND '.join(["{col} LIKE '{value}'".format(col=k, value=v) for k, v in like_filters.iteritems()])
         return query
 
+    def get_results(self, query):
+        try:
+            self.__open()
+            df = pd.read_sql(query, con=self.__dbconn)
+            self.__close()
+        except mdb.Error, e:
+            raise e
+        return df
+
     def get_values(self, table_name, column_names, value_filters=None, like_filters=None):
         try:
             self.__open()
