@@ -68,5 +68,5 @@ class Bittrex:
         return self.__getRequestOutput(method='account/getbalances', options={})
 
     def getBalance(self, market):
-        return self.__getRequestOutput(method='account/getbalance', options={'market': market})
+        return self.__getRequestOutput(method='account/getbalance', options={'currency': market})
 
