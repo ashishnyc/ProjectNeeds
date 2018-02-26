@@ -62,7 +62,9 @@ class Bittrex:
         return self.__getRequestOutput(method='market/cancel', options={'uuid':uuid})
 
     def getMarketOpenOrders(self, market):
-        return self.__getRequestOutput(method='market/getopenorders', options={'market': market})
+        if market is not None:
+            return self.__getRequestOutput(method='market/getopenorders', options={'market': market})
+        return self.__getRequestOutput(method='market/getopenorders', options={})
 
     def getBalances(self):
         return self.__getRequestOutput(method='account/getbalances', options={})
